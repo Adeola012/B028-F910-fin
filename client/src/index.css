@@ -12,7 +12,7 @@
     --popover-foreground: 222.2 84% 4.9%;
     --primary: 221.2 83.2% 53.3%;
     --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96%;
+    --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 84% 4.9%;
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
@@ -47,13 +47,156 @@
     --input: 217.2 32.6% 17.5%;
     --ring: 224.3 76.3% 94.1%;
   }
-}
 
-@layer base {
   * {
     @apply border-border;
   }
+  
   body {
     @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
   }
-}
+
+  /* Enterprise Design System */
+  .enterprise-card {
+    @apply bg-white rounded-lg shadow-soft border border-gray-200;
+  }
+
+  .enterprise-button {
+    @apply inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2;
+  }
+
+  .enterprise-button-primary {
+    @apply enterprise-button bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500;
+  }
+
+  .enterprise-button-secondary {
+    @apply enterprise-button bg-gray-100 text-gray-900 hover:bg-gray-200 focus:ring-gray-500;
+  }
+
+  .enterprise-input {
+    @apply flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .enterprise-textarea {
+    @apply flex min-h-[80px] w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm ring-offset-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .enterprise-select {
+    @apply flex h-10 w-full items-center justify-between rounded-md border border-gray-300 bg-white px-3 py-2 text-sm ring-offset-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .enterprise-table {
+    @apply w-full text-sm;
+  }
+
+  .enterprise-table-header {
+    @apply bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider;
+  }
+
+  .enterprise-table-cell {
+    @apply px-6 py-4 whitespace-nowrap text-sm text-gray-900;
+  }
+
+  .enterprise-sidebar {
+    @apply fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-gray-200;
+  }
+
+  .enterprise-header {
+    @apply fixed top-0 left-0 right-0 z-40 bg-white border-b border-gray-200;
+  }
+
+  .enterprise-content {
+    @apply ml-64 mt-16 p-6;
+  }
+
+  /* Animations */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      transform: translateY(10px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes scaleIn {
+    from {
+      transform: scale(0.95);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.3s ease-out;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.2s ease-out;
+  }
+
+  /* Scrollbar styles */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(156 163 175) rgb(243 244 246);
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: rgb(243 244 246);
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: rgb(156 163 175);
+    border-radius: 3px;
+  }
+
+  /* Loading states */
+  .loading-shimmer {
+    @apply animate-pulse bg-gray-200 rounded;
+  }
+
+  .loading-skeleton {
+    @apply animate-pulse bg-gray-200 rounded;
+  }
+
+  /* Responsive utilities */
+  @screen sm {
+    .enterprise-grid {
+      @apply grid-cols-2;
+    }
+  }
+
+  @screen lg {
+    .enterprise-grid {
+      @apply grid-cols-3;
+    }
+  }
+
+  @screen xl {
+    .enterprise-grid {
+      @apply grid-cols-4;
+    }
+  }
